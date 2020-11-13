@@ -32,4 +32,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ]
 
 
+    console.log(window.location);
+    console.log(new URLSearchParams(window.location.search));
+    console.log(new URLSearchParams(window.location.search).get('type'));
+    var type = new URLSearchParams(window.location.search).get('type');
+
+    var infoPage = informations.find(x => x.id === type) || "pizza";
+    console.log(type);
+    console.log(infoPage);
+
+    var intro = document.querySelector(".sub-intro");
+    var title = intro.querySelector(".main-title");
+    title.innerHTML = infoPage.title;
+
+    var slogan = document.querySelector(".sub-title");
+    slogan.innerHTML = infoPage.slogan;
+
+    var desc = document.querySelector(".sub-description p");
+    desc.innerHTML = infoPage.description;
+
+    var img = document.querySelector((".sub-image img"));
+    img.src = infoPage.image;
+
+    var liste = document.querySelector(".type-list");
+    liste.innerHTML = "";
+
+    for(var i = 0; i < infoPage.type.length; i++)
+    {
+        var li = document.createElement("li");
+        li.innerHTML = infoPage.type[i];
+
+        liste.appendChild(li);
+    }
+
+
 });
